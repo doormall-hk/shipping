@@ -1,0 +1,34 @@
+<div class="shipping-method-card field choice">
+	<div class="shipping-method-title">
+		<!-- ko ifnot: method.error_message -->
+		<input class="radio"
+				   type="radio"
+				   data-bind="
+			value: method.carrier_code + '_' + method.method_code,
+			checked: $parent.isSelected,
+			attr: {
+				'id': 's_method_' + method.carrier_code + '_' + method.method_code,
+				'aria-labelledby': 'label_method_' + method.method_code + '_' + method.carrier_code + ' ' + 'label_carrier_' + method.method_code + '_' + method.carrier_code,
+				'disabled': $parent.isLoading
+			},
+			click: $parent.selectShippingMethod"/>
+		<!-- /ko -->
+		<!-- ko if: method.error_message -->
+		<div class="clearfix"></div>
+		<!-- /ko -->
+			<label data-bind="
+					attr: {
+					'id': 'label_method_' + method.method_code + '_' + method.carrier_code,
+					'for': 's_method_' + method.carrier_code + '_' + method.method_code
+					}
+			" class="label"><!-- ko text: method.carrier_title --><!-- /ko --></label>
+			<div class="shipping-method-subtitle" data-bind="
+	text: method.method_title,
+	attr: {'id': 'label_carrier_' + method.method_code + '_' + method.carrier_code}"></div>
+	</div>
+	<div class="shipping-method-price">
+	<!-- ko foreach: $parent.getRegion('price') -->
+	<!-- ko template: getTemplate() --><!-- /ko -->
+	<!-- /ko -->
+	</div>
+</div>
