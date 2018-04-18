@@ -1,1 +1,16 @@
-<div data-bind='html: title()'></div>
+<div class='field'>
+	<div class='control'>
+		<label data-bind="attr: {for: fid('regionA')}" class='label'>
+			<span><!-- ko df_i18n: 'Region A'--><!-- /ko --></span>
+		</label>
+		<select class='select' data-bind="
+			attr: {id: fid('regionA')}
+			,enable: true
+			,options: regionsA()
+			,optionsValue: 'value'
+			,optionsText: 'label'
+			,optionsCaption: $t('Region A')
+			,value: regionA
+		"/>
+	</div>
+</div>
