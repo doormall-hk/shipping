@@ -1,34 +1,35 @@
-<div class="shipping-method-card field choice">
-	<div class="shipping-method-title">
-		<!-- ko ifnot: method.error_message -->
-		<input class="radio"
-				   type="radio"
-				   data-bind="
-			value: method.carrier_code + '_' + method.method_code,
-			checked: $parent.isSelected,
-			attr: {
-				'id': 's_method_' + method.carrier_code + '_' + method.method_code,
-				'aria-labelledby': 'label_method_' + method.method_code + '_' + method.carrier_code + ' ' + 'label_carrier_' + method.method_code + '_' + method.carrier_code,
-				'disabled': $parent.isLoading
-			},
-			click: $parent.selectShippingMethod"/>
-		<!-- /ko -->
+<div class='shipping-method-card field choice'>
+	<div class='shipping-method-title'>
 		<!-- ko if: method.error_message -->
-		<div class="clearfix"></div>
+			<div class='clearfix'></div>
 		<!-- /ko -->
-			<label data-bind="
-					attr: {
-					'id': 'label_method_' + method.method_code + '_' + method.carrier_code,
-					'for': 's_method_' + method.carrier_code + '_' + method.method_code
-					}
-			" class="label"><!-- ko text: method.carrier_title --><!-- /ko --></label>
-			<div class="shipping-method-subtitle" data-bind="
-	text: method.method_title,
-	attr: {'id': 'label_carrier_' + method.method_code + '_' + method.carrier_code}"></div>
+		<!-- ko ifnot: method.error_message -->
+			<input class='radio' type='radio' data-bind="
+				attr: {
+					'aria-labelledby': [
+						['label_method', method.method_code, method.carrier_code].join('_')
+						,['label_carrier', method.method_code, method.carrier_code].join('_')
+					].join(' ')
+					,'disabled': $parent.isLoading
+					,'id': ['s_method', method.carrier_code, method.method_code].join('_')
+				}
+				,checked: $parent.isSelected
+				,click: $parent.selectShippingMethod
+				,value: [method.carrier_code, method.method_code].join('_')
+			"/>
+		<!-- /ko -->
+		<label class='label' data-bind="attr: {
+			'for': ['s_method', method.carrier_code, method.method_code].join('_'),
+			'id': ['label_method', method.method_code, method.carrier_code].join('_')
+		}"><!-- ko text: method.carrier_title --><!-- /ko --></label>
+		<div class='shipping-method-subtitle' data-bind="
+			attr: {'id': ['label_carrier', method.method_code, method.carrier_code].join('_')},
+			text: method.method_title
+		"></div>
 	</div>
-	<div class="shipping-method-price">
-	<!-- ko foreach: $parent.getRegion('price') -->
-	<!-- ko template: getTemplate() --><!-- /ko -->
-	<!-- /ko -->
+	<div class='shipping-method-price'>
+		<!-- ko foreach: $parent.getRegion('price') -->
+			<!-- ko template: getTemplate() --><!-- /ko -->
+		<!-- /ko -->
 	</div>
 </div>
