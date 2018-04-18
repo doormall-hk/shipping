@@ -12,7 +12,7 @@ return parent.extend({
 	 */
 	fid: function(id) {return 'doormall_shipping' + '_' + id;},
 	regionsA: function() {return _.map([
-		'Kowloon', 'Hong Kong Island', 'N.T', 'Macau'
+		'', 'Kowloon', 'Hong Kong Island', 'N.T', 'Macau'
 	], function(v) {return {'value': v, 'label': v};});},
 	title: function() {return 'Hello, DoorMall!';}
 });});
