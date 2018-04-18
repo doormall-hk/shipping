@@ -1,5 +1,7 @@
 <!-- ko if: 'doormall' === method.carrier_code -->
-	<!-- ko template: 'Doormall_Shipping/main' --><!-- /ko -->
+	<!-- ko foreach: $parent.getRegion('doormall_shipping') -->
+		<!-- ko template: getTemplate() --><!-- /ko -->
+	<!--/ko-->
 <!-- /ko -->
 <!-- ko ifnot: 'doormall' === method.carrier_code -->
 	<div class='shipping-method-subtitle' data-bind="
