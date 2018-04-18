@@ -1,0 +1,9 @@
+<!-- ko if: 'doormall' === method.carrier_code -->
+	<!-- ko template: 'Doormall_Shipping/main' --><!-- /ko -->
+<!-- /ko -->
+<!-- ko ifnot: 'doormall' === method.carrier_code -->
+	<div class='shipping-method-subtitle' data-bind="
+		attr: {'id': ['label_carrier', method.method_code, method.carrier_code].join('_')},
+		text: method.method_title
+	"></div>
+<!-- /ko -->
