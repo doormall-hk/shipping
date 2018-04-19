@@ -64,7 +64,7 @@ So the `sortOrder` value is 1920. -->
 				<field
 					dfEntity='Doormall\Shipping\Partner\Entity'
 					dfItemFormElement='Doormall\Shipping\Partner\FE'
-					id='plans'
+					id='partners'
 					showInDefault='1' showInStore='1' showInWebsite='1'
 					sortOrder='2'
 					translate='label'

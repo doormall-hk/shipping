@@ -20,6 +20,7 @@ class FE extends \Df\Framework\Form\Element\Fieldset {
 		parent::onFormInitialized();
 		// 2016-07-30 This CSS class will be applied to the <fieldset> DOM node.
 		$this->addClass('doormall-shipping-partner');
+		$this->text('title', 'Title');
 		$this->money(O::fee, 'Fee');
 	}
 }
