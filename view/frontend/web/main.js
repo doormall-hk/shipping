@@ -11,10 +11,9 @@ return parent.extend({
 	 * @param {Event} ev
 	 */
 	changedRegionA: function(obj, ev) {
-		/**
-		 * 2018-04-19
-		 * The `originalEvent` property is present when the event is triggered by the customer.
-		 */
+		// 2018-04-19
+		// The `originalEvent` property is present when the event is triggered by the customer.
+		// https://stackoverflow.com/a/20397649
 		if (ev.originalEvent) {
 			console.log($(ev.currentTarget).val());
 		}
