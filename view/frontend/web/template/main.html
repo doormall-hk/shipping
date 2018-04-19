@@ -1,34 +1,36 @@
 <fieldset>
-	<div class='field _required fl-label' data-value-specified='1'>
-		<div class='control'>
-			<label data-bind="attr: {for: fid('regionA')}" class='label'>
-				<span><!-- ko df_i18n: 'Region A'--><!-- /ko --></span>
-			</label>
-			<select class='select' data-bind="
-				attr: {id: fid('regionA')}
-				,enable: true
-				,event:{change: changedRegionA}
-				,options: regionsAO
-				,optionsValue: 'value'
-				,optionsText: 'label'
-				,value: regionA
-			"/>
+	<div class='field-row osc-fluid'>
+		<div class='field _required fl-label' data-value-specified='1'>
+			<div class='control'>
+				<label data-bind="attr: {for: fid('regionA')}" class='label'>
+					<span><!-- ko df_i18n: 'Region A'--><!-- /ko --></span>
+				</label>
+				<select class='select' data-bind="
+					attr: {id: fid('regionA')}
+					,enable: true
+					,event:{change: changedRegionA}
+					,options: regionsAO
+					,optionsValue: 'value'
+					,optionsText: 'label'
+					,value: regionA
+				"/>
+			</div>
 		</div>
-	</div>
-	<div class='field _required fl-label' data-value-specified='1'>
-		<div class='control'>
-			<label data-bind="attr: {for: fid('regionB')}" class='label'>
-				<span><!-- ko df_i18n: 'Region B'--><!-- /ko --></span>
-			</label>
-			<select class='select' data-bind="
-				attr: {id: fid('regionB')}
-				,enable: true
-				,event:{change: changedRegionB}
-				,options: regionsBO
-				,optionsValue: 'value'
-				,optionsText: 'label'
-				,value: regionB
-			"/>
+		<div class='field _required fl-label' data-value-specified='1'>
+			<div class='control'>
+				<label data-bind="attr: {for: fid('regionB')}" class='label'>
+					<span><!-- ko df_i18n: 'Region B'--><!-- /ko --></span>
+				</label>
+				<select class='select' data-bind="
+					attr: {id: fid('regionB')}
+					,enable: true
+					,event:{change: changedRegionB}
+					,options: regionsBO
+					,optionsValue: 'value'
+					,optionsText: 'label'
+					,value: regionB
+				"/>
+			</div>
 		</div>
 	</div>
 </fieldset>
