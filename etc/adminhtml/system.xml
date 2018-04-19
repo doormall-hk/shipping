@@ -61,6 +61,20 @@ So the `sortOrder` value is 1920. -->
 -->
 					<comment><![CDATA[Enable the <a href='https://github.com/doormall-hk/shipping' target='_blank'>doorMALL pickup</a> shipping extension?]]></comment>
 				</field>
+				<field
+					dfEntity='Doormall\Shipping\Partner\Entity'
+					dfItemFormElement='Doormall\Shipping\Partner\FormElement'
+					id='plans'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='2'
+					translate='label'
+					type='Df\Framework\Form\Element\ArrayT'
+				>
+					<label>Partners</label>
+					<comment><![CDATA[]]></comment>
+					<backend_model>Df\Config\Backend\ArrayT</backend_model>
+					<depends><field id='enable'>1</field></depends>
+				</field>
 			</group>
 		</section>
 	</system>
