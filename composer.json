@@ -1,8 +1,9 @@
 {
 	"name": "doormall.hk/shipping"
+	,"version": "0.0.5"
 	,"description": "A custom shipping module for doormall.hk"
 	,"type": "magento2-module"
-	,"version": "0.0.5"
+	,"homepage": "https://github.com/doormall-hk/shipping"
 	,"license": "MIT"
 	,"authors": [{
 		"name": "Dmitry Fedyuk"

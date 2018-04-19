@@ -1,0 +1,67 @@
+<?xml version='1.0'?>
+<config
+	xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xsi:noNamespaceSchemaLocation='urn:magento:module:Df_Config:etc/system_file.xsd'
+>
+	<system>
+<!-- 2015-07-10
+The minimal tab `id` length is 3 characters:
+https://github.com/magento/magento2/blob/1.0.0-beta/app/code/Magento/Config/etc/system_file.xsd#L405 -->
+        <tab id='doormall' translate='label' sortOrder='-100'>
+            <label>doorMALL</label>
+        </tab>
+		<section
+			id='doormall_shipping'
+			showInDefault='1' showInWebsite='1' showInStore='1'
+			translate='label'
+		>
+			<tab>doormall</tab>
+			<label>Shipping</label>
+			<class>separator-top</class>
+			<!-- 2015-10-05 https://mage2.pro/t/114 -->
+			<resource>Doormall_Shipping::config</resource>
+<!-- 2015-09-25, 2017-10-22
+Magento 2 is not capable to automatically order settings groups
+in the backend «Stores» → «Configuration» left menu by alphabet.
+To achieve such ordering, I use the following 2 rules to assign a `sortOrder` value to a settings group:
+1) The 1-st and 2-nd digits of a `sortOrder` value
+are the digits of the ordering number of the 1-st letter of the module's label in the English alphabet:
+https://en.wikipedia.org/wiki/English_alphabet
+2) The 3-rd and 4-nd digits of a `sortOrder` value
+are the digits of the ordering number of the 2-nd letter of the module's label in the English alphabet.
+===
+An example:
+A label is «Stripe».
+The first letter is «S». It is the 19-nd letter of the English alphabet.
+The second letter is «t». It is the 20-nd letter of the English alphabet.
+So the `sortOrder` value is 1920. -->
+			<group
+				id='pickup'
+				showInDefault='1' showInStore='1' showInWebsite='1'
+				sortOrder='112'
+				translate='label'
+			>
+				<label>Pickup</label>
+				<dfExtension>Doormall_Shipping</dfExtension>
+				<frontend_model>Df\Config\Fieldset</frontend_model>
+				<field
+					id='enable'
+					showInDefault='1' showInStore='1' showInWebsite='1'
+					sortOrder='1'
+					translate='label'
+					type='Df\Framework\Form\Element\Checkbox'
+				>
+					<label>Enable?</label>
+					<backend_model>Df\Config\Backend\Checkbox</backend_model>
+<!-- 2016-06-30
+Можно, конечно, передавать этот класс в качестве параметра класса backend_model или type
+(используя технологию virtualType), однако у предков как backend_model, так и type
+слишком много параметров в конструкторе, и пересылка их предку может сделать систему чересчур хрупкой:
+ведь в будущих версиях Magento перечень параметров предка может измениться.
+-->
+					<comment><![CDATA[Enable the <a href='https://github.com/doormall-hk/shipping' target='_blank'>doorMALL pickup</a> shipping extension?]]></comment>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

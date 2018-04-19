@@ -1,4 +1,4 @@
-A custom shipping module for [doormall.hk](https://doormall.hk).
+A pickup shipping module for [doormall.hk](https://doormall.hk).
 
 ## How to install
 ```
