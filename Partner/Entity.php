@@ -19,4 +19,7 @@ final class Entity extends \Df\Config\ArrayItem {
 	 * @return int
 	 */
 	function sortWeight() {return 0;}
+
+	/** 2018-04-19 @used-by \Doormall\Shipping\Partner\FE::onFormInitialized() */
+	const fee = 'fee';
 }
