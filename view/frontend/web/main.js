@@ -1,21 +1,34 @@
 // 2018-04-18
 define([
-	'df-lodash', 'jquery', 'uiComponent'
-], function(_, $, parent) {'use strict';
+	'df-lodash', 'jquery', 'ko', 'uiComponent'
+], function(_, $, ko, parent) {'use strict';
 /** 2017-09-06 @uses Class::extend() https://github.com/magento/magento2/blob/2.2.0-rc2.3/app/code/Magento/Ui/view/base/web/js/lib/core/class.js#L106-L140 */
 return parent.extend({
-	defaults: {regionA: null, template: 'Doormall_Shipping/main'},
+	defaults: {regionA: null, regionB: null, template: 'Doormall_Shipping/main'},
 	/**
 	 * 2018-04-19
-	 * @param {Object} obj
-	 * @param {Event} ev
+	 * @param {Object} _this
+	 * @param {Event} e
 	 */
-	changedRegionA: function(obj, ev) {
+	changedRegionA: function(_this, e) {
 		// 2018-04-19
 		// The `originalEvent` property is present when the event is triggered by the customer.
 		// https://stackoverflow.com/a/20397649
-		if (ev.originalEvent) {
-			console.log($(ev.currentTarget).val());
+		if (e.originalEvent) {
+			console.log($(e.currentTarget).val());
+		}
+	},
+	/**
+	 * 2018-04-19
+	 * @param {Object} _this
+	 * @param {Event} e
+	 */
+	changedRegionB: function(_this, e) {
+		// 2018-04-19
+		// The `originalEvent` property is present when the event is triggered by the customer.
+		// https://stackoverflow.com/a/20397649
+		if (e.originalEvent) {
+			console.log($(e.currentTarget).val());
 		}
 	},
 	/**
@@ -26,11 +39,30 @@ return parent.extend({
 	fid: function(id) {return 'doormall_shipping' + '_' + id;},
 	/**
 	 * 2018-04-19
+	 * @override
+	 * @see uiComponent::initialize()
+	 * https://github.com/magento/magento2/blob/2.2.3/app/code/Magento/Ui/view/base/web/js/lib/core/element/element.js#L97-L111
+	 * @returns {exports}
+	*/
+	initialize: function() {
+		this._super();
+		this.regionsAO = this.opts(['Kowloon', 'Hong Kong Island', 'N.T', 'Macau']);
+		this.regionsB = ko.observable({});
+		var _this = this;
+		this.regionsBO = ko.computed(function() {this.opts(this.regionsB);}, this);
+		return this;
+	},	
+	/**
+	 * 2018-04-19
+	 * @override
+	 * @used-by initialize()
+	 * @param {Array|Object} map
 	 * @returns {Object}
 	 */
-	regionsA: function() {return _.map([
-		'', 'Kowloon', 'Hong Kong Island', 'N.T', 'Macau'
-	], function(v) {return {'value': v, 'label': v};});},
+	opts: function(map) {
+		var option = function(v, l) {return {'value': v, 'label': l};};
+		return [option('', '')].concat(_.map(map, function(v, k) {return option(k, v);}));
+	},
 	/**
 	 * 2018-04-19
 	 * @returns {String}
