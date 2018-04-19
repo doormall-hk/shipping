@@ -33,4 +33,22 @@
 			</div>
 		</div>
 	</div>
+	<div class='field-row osc-fluid'>
+		<div class='field _required fl-label' data-value-specified='1'>
+			<div class='control'>
+				<label data-bind="attr: {for: fid('address')}" class='label'>
+					<span><!-- ko df_i18n: 'Full Address'--><!-- /ko --></span>
+				</label>
+				<select class='select' data-bind="
+					attr: {id: fid('address')}
+					,enable: true
+					,event:{change: changedAddress}
+					,options: addressesO
+					,optionsValue: 'value'
+					,optionsText: 'label'
+					,value: address
+				"/>
+			</div>
+		</div>
+	</div>
 </fieldset>
