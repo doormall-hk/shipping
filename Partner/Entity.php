@@ -9,7 +9,14 @@ final class Entity extends \Df\Config\ArrayItem {
 	 * @used-by \Df\Config\A::get()
 	 * @return int
 	 */
-	function id() {return 0;}
+	function id() {return $this->title();}
+
+	/**
+	 * 2018-04-20
+	 * @used-by id()
+	 * @return string
+	 */
+	function title() {return $this->v();}
 
 	/**
 	 * 2018-04-19
@@ -37,4 +44,7 @@ final class Entity extends \Df\Config\ArrayItem {
 
 	/** 2018-04-20 @used-by \Doormall\Shipping\Partner\FE::onFormInitialized() */
 	const icon_width = 'icon_width';
+
+	/** 2018-04-20 @used-by \Doormall\Shipping\Partner\FE::onFormInitialized() */
+	const title = 'title';
 }
