@@ -1,5 +1,7 @@
 <?php
 namespace Doormall\Shipping\Partner;
+use Df\Framework\Form\Element\Fieldset\Inline as FInline;
+use Df\Framework\Form\Element\Number;
 use Doormall\Shipping\Partner\Entity as O;
 /**
  * 2018-04-19
@@ -22,5 +24,10 @@ class FE extends \Df\Framework\Form\Element\Fieldset {
 		$this->addClass('doormall-shipping-partner');
 		$this->text('title', 'Title');
 		$this->money(O::fee, 'Fee');
+		$this->text(O::data_url, 'CSV URL');
+		$this->checkbox(O::icon_enable, 'Show Icon?');
+		$this->text(O::icon_url, 'Icon URL');
+		$this->number(O::icon_width, 'Icon Width', ['value' => 64, Number::LABEL_RIGHT => 'px']);
+		$this->number(O::icon_height, 'Icon Height', ['value' => 64, Number::LABEL_RIGHT => 'px']);
 	}
 }
