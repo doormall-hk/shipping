@@ -7,7 +7,7 @@ use Magento\Shipping\Model\Carrier\AbstractCarrierInterface as IAC; // 2018-04-1
 use Magento\Shipping\Model\Carrier\CarrierInterface as IC; // 2018-04-17 It is used by PHPDoc.
 use Magento\Shipping\Model\Rate\Result as Res;
 // 2018-04-17
-class Method extends \Df\Shipping\Method {
+final class Method extends \Df\Shipping\Method {
 	/**
 	 * 2018-04-17
 	 * @override

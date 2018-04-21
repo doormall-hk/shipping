@@ -60,6 +60,28 @@ So the `sortOrder` value is 1920. -->
 ведь в будущих версиях Magento перечень параметров предка может измениться.
 -->
 					<comment><![CDATA[Enable the <a href='https://github.com/doormall-hk/shipping' target='_blank'>doorMALL pickup</a> shipping extension?]]></comment>
+<!-- 2018-04-21
+@used-by \Magento\Shipping\Model\Config::getActiveCarriers():
+public function getActiveCarriers($store = null) {
+	$carriers = [];
+	$config = $this->_scopeConfig->getValue('carriers', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $store);
+	foreach (array_keys($config) as $carrierCode) {
+		if ($this->_scopeConfig->isSetFlag(
+			'carriers/' . $carrierCode . '/active',
+			\Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+			$store
+		)) {
+			$carrierModel = $this->_carrierFactory->create($carrierCode, $store);
+			if ($carrierModel) {
+				$carriers[$carrierCode] = $carrierModel;
+			}
+		}
+	}
+	return $carriers;
+}
+https://github.com/magento/magento2/blob/2.2.3/app/code/Magento/Shipping/Model/Config.php#L58-L77
+-->
+					<config_path>carriers/doormall/active</config_path>
 				</field>
 				<field
 					dfEntity='Doormall\Shipping\Partner\Entity'

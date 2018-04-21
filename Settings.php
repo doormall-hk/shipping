@@ -4,7 +4,7 @@ use Df\Config\A;
 use Doormall\Shipping\Partner\Entity as Partner;
 // 2018-04-21
 /** @method static Settings s() */
-final class Settings extends \Df\Config\Settings {
+final class Settings extends \Df\Shipping\Settings {
 	/**
 	 * 2018-04-21 «doorMALL» → «Shipping» → «Pickup»→ «Partners»
 	 * @param int|null $id [optional]
@@ -18,7 +18,7 @@ final class Settings extends \Df\Config\Settings {
 	/**
 	 * 2018-04-21
 	 * @override
-	 * @see \Df\Config\Settings::prefix()
+	 * @see \Df\Shipping\Settings::prefix()
 	 * @used-by \Df\Config\Settings::v()
 	 * @return string
 	 */
