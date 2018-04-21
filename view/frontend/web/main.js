@@ -1,10 +1,10 @@
 // 2018-04-18
 define([
-	'df-lodash', 'jquery', 'ko', 'uiComponent'
-], function(_, $, ko, parent) {'use strict';
+	'df-lodash', 'jquery', 'ko', 'uiComponent', 'uiRegistry'
+], function(_, $, ko, parent, uiRegistry) {'use strict';
 /** 2017-09-06 @uses Class::extend() https://github.com/magento/magento2/blob/2.2.0-rc2.3/app/code/Magento/Ui/view/base/web/js/lib/core/class.js#L106-L140 */
 return parent.extend({
-	defaults: {address: null, regionA: null, regionB: null, template: 'Doormall_Shipping/main'},
+	defaults: {address: null, m: null, regionA: null, regionB: null, template: 'Doormall_Shipping/main'},
 	/**
 	 * 2018-04-19
 	 * @param {Object} _this
@@ -49,7 +49,14 @@ return parent.extend({
 	 * @param {String} id
 	 * @returns {String}
 	 */
-	fid: function(id) {return 'doormall_shipping' + '_' + id;},
+	fid: function(id) {
+		return 'doormall_shipping' + '_' + id;
+	},
+	getTemplate(m) {
+		debugger;
+		this.m = m;
+		return this._super();
+	},
 	/**
 	 * 2018-04-19
 	 * @override
@@ -58,7 +65,11 @@ return parent.extend({
 	 * @returns {exports}
 	*/
 	initialize: function() {
+		debugger;
 		this._super();
+		debugger;
+		var parent = uiRegistry.get(this.parentName);
+		debugger;
 		this.regionsAO = this.opts(['Kowloon', 'Hong Kong Island', 'N.T', 'Macau']);
 		this.regionsB = ko.observable({});
 		this.regionsBO = ko.computed(function() {this.opts(this.regionsB);}, this);

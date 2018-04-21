@@ -1,6 +1,6 @@
 <!-- ko if: 'doormall' === method.carrier_code -->
-	<!-- ko foreach: $parent.getRegion('doormall_shipping') -->
-		<!-- ko template: getTemplate() --><!-- /ko -->
+	<!-- ko foreach: $parent.getRegion('doormall_shipping', method) -->
+		<!-- ko template: getTemplate(method) --><!-- /ko -->
 	<!--/ko-->
 <!-- /ko -->
 <!-- ko ifnot: 'doormall' === method.carrier_code -->
