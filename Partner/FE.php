@@ -22,7 +22,8 @@ class FE extends \Df\Framework\Form\Element\Fieldset {
 		// 2016-07-30 This CSS class will be applied to the <fieldset> DOM node.
 		$this->addClass('doormall-shipping-partner');
 		$this->text(O::id, 'ID');
-		$this->text(O::title, 'Title');
+		$this->text(O::titleEN, 'Title EN');
+		$this->text(O::titleZH, 'Title ZH');
 		$this->money(O::fee, 'Fee');
 		$this->textarea(O::data_url, 'CSV URL');
 		$this->checkbox(O::icon_enable, 'Show Icon?');
