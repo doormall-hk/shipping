@@ -13,8 +13,10 @@ final class Method extends \Df\Shipping\Method {
 	/**
 	 * 2018-04-17
 	 * @override
-	 * @see IAC::collectRates()
-	 * https://github.com/magento/magento2/blob/2.2.3/app/code/Magento/Shipping/Model/Carrier/AbstractCarrierInterface.php#L24-L31
+	 * @see \Df\Shipping\Method::collectRates()
+	 * @used-by \Magento\Shipping\Model\Shipping::collectCarrierRates():
+ 	 *	$result = $carrier->collectRates($request);
+	 * https://github.com/magento/magento2/blob/2.2.3/app/code/Magento/Shipping/Model/Shipping.php#L243-L321
 	 * @param Req $req
 	 * @return Res
 	 */
