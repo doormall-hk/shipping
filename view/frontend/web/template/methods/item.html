@@ -21,7 +21,18 @@
 		<label class='label' data-bind="attr: {
 			'for': ['s_method', method.carrier_code, method.method_code].join('_'),
 			'id': ['label_method', method.method_code, method.carrier_code].join('_')
-		}"><!-- ko text: method.carrier_title --><!-- /ko --></label>
+		}">
+			<!-- ko if: 'doormall' === method.carrier_code -->
+				<img
+					height='64'
+					src='https://raw.githubusercontent.com/doormall-hk/shipping/0.1.0/etc/test/1/logo.png'
+					width='48'
+				/>
+			<!-- /ko -->
+			<!-- ko ifnot: 'doormall' === method.carrier_code -->
+				<!-- ko text: method.carrier_title --><!-- /ko -->
+			<!-- /ko -->
+		</label>
 		<!-- ko template: 'Doormall_Shipping/methods/item/subtitle' --><!-- /ko -->
 	</div>
 	<div class='shipping-method-price'>
