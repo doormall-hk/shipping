@@ -1,5 +1,12 @@
 // 2018-04-19
 .onestepcheckout-index-index .shipping-method-card.doormall .shipping-method-title {
-	> label {margin-top: 1em; width: 12em;}
-	> fieldset {border: 0; margin: 0 2em 0 0; padding: 0; width: 100%;}
+	> label {
+		margin-top: 0; width: 12em;
+		&::before {margin-top: 1em !important;}
+	}
+	> fieldset {
+		border: 0; margin: 0 2em 0 0; padding: 0; width: 100%;
+		.field {margin-left: 0; margin-right: 0;}
+	}
 }
+
