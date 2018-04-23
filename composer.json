@@ -1,6 +1,6 @@
 {
 	"name": "doormall.hk/shipping"
-	,"version": "0.2.0"
+	,"version": "0.2.1"
 	,"description": "A custom shipping module for doormall.hk"
 	,"type": "magento2-module"
 	,"homepage": "https://github.com/doormall-hk/shipping"

@@ -23,7 +23,7 @@
 			'id': ['label_method', method.method_code, method.carrier_code].join('_')
 		}">
 			<!-- ko if: 'doormall' === method.carrier_code -->
-				<img data-bind="attr: $parent.dfImg(method)"/>
+				<span><img data-bind="attr: $parent.dfImg(method)"/></span>
 			<!-- /ko -->
 			<!-- ko ifnot: 'doormall' === method.carrier_code -->
 				<!-- ko text: method.carrier_title --><!-- /ko -->
