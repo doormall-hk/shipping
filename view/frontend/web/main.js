@@ -50,7 +50,7 @@ return parent.extend({
 	 * @param {String} id
 	 * @returns {String}
 	 */
-	fid: function(id) {return 'doormall_shipping' + '_' + id;},
+	fid: function(id) {return [this.m.carrier_code, this.m.method_code, id].join('_');},
 	/**
 	 * 2018-04-19
 	 * @override
@@ -62,6 +62,7 @@ return parent.extend({
 		this._super();
 		//var parent = uiRegistry.get(this.parentName);
 		debugger;
+		this.config = window.checkoutConfig.shipping[this.m.carrier_code][this.m.method_code];
 		this.regionsAO = this.opts(['Kowloon', 'Hong Kong Island', 'N.T', 'Macau']);
 		this.regionsB = ko.observable({});
 		this.regionsBO = ko.computed(function() {this.opts(this.regionsB);}, this);
