@@ -1,7 +1,7 @@
 // 2018-04-18
 define([
-	'df-lodash', 'jquery', 'ko', 'uiComponent', 'uiRegistry'
-], function(_, $, ko, parent, uiRegistry) {'use strict';
+	'df-lodash', 'jquery', 'ko', 'Magento_Checkout/js/model/quote', 'uiComponent', 'uiRegistry'
+], function(_, $, ko, quote, parent, uiRegistry) {'use strict';
 /** 2017-09-06 @uses Class::extend() https://github.com/magento/magento2/blob/2.2.0-rc2.3/app/code/Magento/Ui/view/base/web/js/lib/core/class.js#L106-L140 */
 return parent.extend({
 	defaults: {address: null, m: null, regionA: null, regionB: null, template: 'Doormall_Shipping/main'},
@@ -68,6 +68,10 @@ return parent.extend({
 		this.regionsBO = ko.computed(function() {this.opts(this.regionsB);}, this);
 		this.addresses = ko.observable({});
 		this.addressesO = ko.computed(function() {this.opts(this.addresses);}, this);
+		this.dfIsChosen = ko.computed(function() {
+			var m = quote.shippingMethod();
+			return m && m.carrier_code === this.m.carrier_code && m.method_code === this.m.method_code;
+		}, this);
 		return this;
 	},	
 	/**
