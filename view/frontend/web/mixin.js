@@ -2,6 +2,13 @@
 define([
 	'df-lodash', 'uiLayout'
 ], function(_, layout) {'use strict'; return function(sb) {return sb.extend({
+   /**
+	* 2018-04-23
+	* @used-by Doormall_Shipping/methods/item
+	* @param {Object} m
+	* @returns {Object}
+	*/
+	dfImg: function(m) {return window.checkoutConfig.shipping[m.carrier_code][m.method_code]['img']},
 	initialize: function() {
 		this._super();
 		var _this = this;
