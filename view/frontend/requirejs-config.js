@@ -5,6 +5,12 @@
 // «How to override a HTML file using a custom module?»:
 // https://stackoverflow.com/a/37464758
 // https://magento.stackexchange.com/a/117236
-var config = {map: {'*': {
-	'Aheadworks_OneStepCheckout/template/shipping-method.html': 'Doormall_Shipping/template/methods.html'
-}}};
+var config = {
+    config: {
+    	// 2018-04-22 «What are requirejs-config.js `mixins`?» https://mage2.pro/t/5297
+        mixins: {'Aheadworks_OneStepCheckout/js/view/shipping-method': {'Doormall_Shipping/mixin': true}}
+    },
+	map: {'*': {
+		'Aheadworks_OneStepCheckout/template/shipping-method.html': 'Doormall_Shipping/template/methods.html'
+	}}
+};

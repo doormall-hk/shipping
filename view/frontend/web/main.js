@@ -28,6 +28,7 @@ return parent.extend({
 		// The `originalEvent` property is present when the event is triggered by the customer.
 		// https://stackoverflow.com/a/20397649
 		if (e.originalEvent) {
+			debugger;
 			console.log($(e.currentTarget).val());
 		}
 	},
@@ -49,14 +50,7 @@ return parent.extend({
 	 * @param {String} id
 	 * @returns {String}
 	 */
-	fid: function(id) {
-		return 'doormall_shipping' + '_' + id;
-	},
-	getTemplate(m) {
-		debugger;
-		this.m = m;
-		return this._super();
-	},
+	fid: function(id) {return 'doormall_shipping' + '_' + id;},
 	/**
 	 * 2018-04-19
 	 * @override
@@ -65,10 +59,8 @@ return parent.extend({
 	 * @returns {exports}
 	*/
 	initialize: function() {
-		debugger;
 		this._super();
-		debugger;
-		var parent = uiRegistry.get(this.parentName);
+		//var parent = uiRegistry.get(this.parentName);
 		debugger;
 		this.regionsAO = this.opts(['Kowloon', 'Hong Kong Island', 'N.T', 'Macau']);
 		this.regionsB = ko.observable({});
