@@ -33,7 +33,24 @@ final class Entity extends \Df\Config\ArrayItem {
 	 * @used-by \Doormall\Shipping\ConfigProvider::config()
 	 * @return array(string => array(string => string[]))
 	 */
-	function locations() {return [];}
+	function locations() {return df_cache_get_simple(null, function($url) {
+		/** @var array(string => array(string => string[])) $r */
+		if (!$url) {
+			$r = [];
+		}
+		else {
+			/** @var string[][] $a */
+			$a = df_tail(array_map('str_getcsv', df_explode_n(file_get_contents($url))));
+			$lang = function($l) use($a) {$o = 'en' === $l ? 0 : 4; return [$l => array_map(
+				function(array $a) {/** @var string[][] $a */return dfa_group($a, 0);}
+				,dfa_group(df_map_r($a, function(array $i) use($o) {return [
+					$i[$o], array_slice($i, $o + 1, 3)
+				];}), 0)
+			)];}; /** @var array(string => array(string => string[])) $lang */
+			$r = $lang('en') + $lang('zh');
+		}
+		return $r;
+	}, [], $this[self::data_url]);}
 
 	/**
 	 * 2018-04-19
@@ -51,7 +68,10 @@ final class Entity extends \Df\Config\ArrayItem {
 	 */
 	function title() {return $this->v(null, df_lang_zh(self::titleZH, self::titleEN));}
 
-	/** 2018-04-20 @used-by \Doormall\Shipping\Partner\FE::onFormInitialized() */
+	/**
+	 * 2018-04-20
+	 * @used-by \Doormall\Shipping\Partner\FE::onFormInitialized()
+	 */
 	const data_url = 'data_url';
 
 	/**
