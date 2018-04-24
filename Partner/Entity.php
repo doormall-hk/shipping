@@ -44,10 +44,10 @@ final class Entity extends \Df\Config\ArrayItem {
 			/** @var string[][] $a */
 			$a = df_tail(array_map('str_getcsv', df_explode_n(file_get_contents($url))));
 			$lang = function($l) use($a) {$o = 'en' === $l ? 0 : 4; return [$l => array_map(
-				function(array $a) {/** @var string[][] $a */return dfa_group($a, 0);}
-				,dfa_group(df_map_r($a, function(array $i) use($o) {return [
-					$i[$o], array_slice($i, $o + 1, 3)
-				];}), 0)
+				function(array $a) {return array_map(function(array $i) {return df_map_r(
+					$i, function(array $j) {return [$j[0], $j[1]];}
+				);}, dfa_group($a, 1));}
+				,dfa_group(array_map(function(array $i) use($o) {return array_slice($i, $o, 4);}, $a), 1)
 			)];}; /** @var array(string => array(string => string[])) $lang */
 			$r = $lang('en') + $lang('zh');
 		}
