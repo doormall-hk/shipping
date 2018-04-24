@@ -31,9 +31,10 @@ final class Entity extends \Df\Config\ArrayItem {
 	/**
 	 * 2018-04-23
 	 * @used-by \Doormall\Shipping\ConfigProvider::config()
+	 * @param string|null $k optional
 	 * @return array(string => array(string => string[]))
 	 */
-	function locations() {return df_cache_get_simple(null, function($url) {
+	function locations($k) {return dfa_deep(df_cache_get_simple(null, function($url) {
 		/** @var array(string => array(string => string[])) $r */
 		if (!$url) {
 			$r = [];
@@ -50,7 +51,7 @@ final class Entity extends \Df\Config\ArrayItem {
 			$r = $lang('en') + $lang('zh');
 		}
 		return $r;
-	}, [], $this[self::data_url]);}
+	}, [], $this[self::data_url]), df_cc_path(df_lang_zh_en(), $k));}
 
 	/**
 	 * 2018-04-19
@@ -70,6 +71,7 @@ final class Entity extends \Df\Config\ArrayItem {
 
 	/**
 	 * 2018-04-20
+	 * @used-by locations()
 	 * @used-by \Doormall\Shipping\Partner\FE::onFormInitialized()
 	 */
 	const data_url = 'data_url';
