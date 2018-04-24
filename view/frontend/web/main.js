@@ -28,8 +28,8 @@ return parent.extend({
 		// The `originalEvent` property is present when the event is triggered by the customer.
 		// https://stackoverflow.com/a/20397649
 		if (e.originalEvent) {
-			debugger;
-			console.log($(e.currentTarget).val());
+			//console.log($(e.currentTarget).val());
+			this.regionsB(this.config['locations'][$(e.currentTarget).val()]);
 		}
 	},
 	/**
@@ -60,14 +60,12 @@ return parent.extend({
 	*/
 	initialize: function() {
 		this._super();
-		//var parent = uiRegistry.get(this.parentName);
-		debugger;
 		this.config = window.checkoutConfig.shipping[this.m.carrier_code][this.m.method_code];
 		this.regionsAO = this.opts(['Kowloon', 'Hong Kong Island', 'N.T', 'Macau']);
 		this.regionsB = ko.observable({});
-		this.regionsBO = ko.computed(function() {this.opts(this.regionsB);}, this);
+		this.regionsBO = ko.computed(function() {return this.opts(this.regionsB());}, this);
 		this.addresses = ko.observable({});
-		this.addressesO = ko.computed(function() {this.opts(this.addresses);}, this);
+		this.addressesO = ko.computed(function() {return this.opts(this.addresses());}, this);
 		this.dfIsChosen = ko.computed(function() {
 			var m = quote.shippingMethod();
 			return m && m.carrier_code === this.m.carrier_code && m.method_code === this.m.method_code;
@@ -82,8 +80,9 @@ return parent.extend({
 	 * @returns {Object}
 	 */
 	opts: function(map) {
-		var option = function(v, l) {return {'value': v, 'label': l};};
-		return [option('', '')].concat(_.map(map, function(v, k) {return option(k, v);}));
+		var o = function(v, l) {return {'value': v, 'label': l};};
+		var isArray = _.isArray(map);
+		return [o('', '')].concat(_.map(map, function(v, k) {return isArray ? o(v, v) : o(k, v);}));
 	},
 	/**
 	 * 2018-04-19
