@@ -31,10 +31,10 @@ final class Entity extends \Df\Config\ArrayItem {
 	/**
 	 * 2018-04-23
 	 * @used-by \Doormall\Shipping\ConfigProvider::config()
-	 * @param string|null $k optional
+	 * @param string|null $k [optional]
 	 * @return array(string => array(string => string[]))
 	 */
-	function locations($k) {return dfa_deep(df_cache_get_simple(null, function($url) {
+	function locations($k = null) {return dfa_deep(df_cache_get_simple(null, function($url) {
 		/** @var array(string => array(string => string[])) $r */
 		if (!$url) {
 			$r = [];
