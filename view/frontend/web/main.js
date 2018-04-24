@@ -1,10 +1,11 @@
 // 2018-04-18
 define([
-	'df-lodash', 'jquery', 'ko', 'Magento_Checkout/js/model/quote', 'uiComponent', 'uiRegistry'
-], function(_, $, ko, quote, parent, uiRegistry) {'use strict';
+	'df-lodash', 'Df_Checkout/api', 'jquery', 'ko'
+	,'Magento_Checkout/js/model/quote', 'uiComponent'
+], function(_, api, $, ko, quote, parent) {'use strict';
 /** 2017-09-06 @uses Class::extend() https://github.com/magento/magento2/blob/2.2.0-rc2.3/app/code/Magento/Ui/view/base/web/js/lib/core/class.js#L106-L140 */
 return parent.extend({
-	defaults: {address: null, m: null, regionA: null, regionB: null, template: 'Doormall_Shipping/main'},
+	defaults: {address: null, m: null, template: 'Doormall_Shipping/main'},
 	/**
 	 * 2018-04-19
 	 * @param {Object} _this
@@ -42,7 +43,15 @@ return parent.extend({
 		// The `originalEvent` property is present when the event is triggered by the customer.
 		// https://stackoverflow.com/a/20397649
 		if (e.originalEvent) {
-			console.log($(e.currentTarget).val());
+			$.when(api(this, 'doormall-shipping', {
+				pid: this.m.method_code, l1: this.regionA(), l2: $(e.currentTarget).val()
+			}, 'get'))
+				.fail(function() {debugger;})
+				.done($.proxy(function(json) {
+					debugger;
+					this.addresses(json);
+				}, this))
+			;
 		}
 	},
 	/**
@@ -61,6 +70,8 @@ return parent.extend({
 	initialize: function() {
 		this._super();
 		this.config = window.checkoutConfig.shipping[this.m.carrier_code][this.m.method_code];
+		this.regionA = ko.observable({});
+		this.regionB = ko.observable({});
 		this.regionsAO = this.opts(['Kowloon', 'Hong Kong Island', 'N.T', 'Macau']);
 		this.regionsB = ko.observable({});
 		this.regionsBO = ko.computed(function() {return this.opts(this.regionsB());}, this);
