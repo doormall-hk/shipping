@@ -18,11 +18,14 @@
 				,value: [method.carrier_code, method.method_code].join('_')
 			"/>
 		<!-- /ko -->
-		<label class='label' data-bind="attr: {
-			'for': ['s_method', method.carrier_code, method.method_code].join('_'),
-			'id': ['label_method', method.method_code, method.carrier_code].join('_')
-		}">
-			<!-- ko if: 'doormall' === method.carrier_code -->
+		<label class='label' data-bind="
+			attr: {
+				'for': ['s_method', method.carrier_code, method.method_code].join('_'),
+				'id': ['label_method', method.method_code, method.carrier_code].join('_')
+			}
+			,css: $parent.dfLabelClass(method)
+		">
+			<!-- ko if: $parent.dfImg(method) -->
 				<span><img data-bind="attr: $parent.dfImg(method)"/></span>
 			<!-- /ko -->
 			<!-- ko ifnot: 'doormall' === method.carrier_code -->

@@ -6,9 +6,19 @@ define([
 	* 2018-04-23
 	* @used-by Doormall_Shipping/methods/item
 	* @param {Object} m
-	* @returns {Object}
+	* @returns {?Object}
 	*/
-	dfImg: function(m) {return window.checkoutConfig.shipping[m.carrier_code][m.method_code]['img']},
+	dfImg: function(m) {
+		var r = _.get(window.checkoutConfig, ['shipping', m.carrier_code, m.method_code, 'img']);
+		return !r || !r.src ? null : r;
+	},
+   /**
+	* 2018-04-23
+	* @used-by Doormall_Shipping/methods/item
+	* @param {Object} m
+	* @returns {String}
+	*/
+	dfLabelClass: function(m) {return this.dfImg(m) ? 'doormall-logo' : 'doormall-no-logo'},
 	initialize: function() {
 		this._super();
 		var _this = this;

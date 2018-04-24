@@ -20,6 +20,22 @@ final class Entity extends \Df\Config\ArrayItem {
 	function id() {return $this->v();}
 
 	/**
+	 * 2018-04-23
+	 * @used-by \Doormall\Shipping\ConfigProvider::config()
+	 * @return array(string => int|string)
+	 */
+	function img() {return !$this[self::icon_enable] ? [] : [
+		'height' => $this[self::icon_height], 'src' => $this[self::icon_url], 'width' => $this[self::icon_width]
+	];}
+
+	/**
+	 * 2018-04-23
+	 * @used-by \Doormall\Shipping\ConfigProvider::config()
+	 * @return array(string => array(string => string[]))
+	 */
+	function locations() {return [];}
+
+	/**
 	 * 2018-04-19
 	 * @override
 	 * @see \Df\Config\ArrayItem::sortWeight()
@@ -38,19 +54,38 @@ final class Entity extends \Df\Config\ArrayItem {
 	/** 2018-04-20 @used-by \Doormall\Shipping\Partner\FE::onFormInitialized() */
 	const data_url = 'data_url';
 
-	/** 2018-04-19 @used-by \Doormall\Shipping\Partner\FE::onFormInitialized() */
+	/**
+	 * 2018-04-19
+	 * @see fee()
+	 * @used-by \Doormall\Shipping\Partner\FE::onFormInitialized()
+	 */
 	const fee = 'fee';
 
-	/** 2018-04-20 @used-by \Doormall\Shipping\Partner\FE::onFormInitialized() */
+	/**
+	 * 2018-04-20
+	 * @used-by \Doormall\Shipping\Partner\FE::onFormInitialized()
+	 */
 	const icon_enable = 'icon_enable';
 
-	/** 2018-04-20 @used-by \Doormall\Shipping\Partner\FE::onFormInitialized() */
+	/**
+	 * 2018-04-20
+	 * @used-by img()
+	 * @used-by \Doormall\Shipping\Partner\FE::onFormInitialized()
+	 */
 	const icon_height = 'icon_height';
 
-	/** 2018-04-20 @used-by \Doormall\Shipping\Partner\FE::onFormInitialized() */
+	/**
+	 * 2018-04-20
+	 * @used-by img()
+	 * @used-by \Doormall\Shipping\Partner\FE::onFormInitialized()
+	 */
 	const icon_url = 'icon_url';
 
-	/** 2018-04-20 @used-by \Doormall\Shipping\Partner\FE::onFormInitialized() */
+	/**
+	 * 2018-04-20
+	 * @used-by img()
+	 * @used-by \Doormall\Shipping\Partner\FE::onFormInitialized()
+	 */
 	const icon_width = 'icon_width';
 
 	/** 2018-04-20 @used-by \Doormall\Shipping\Partner\FE::onFormInitialized() */
