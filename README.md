@@ -11,7 +11,7 @@ If you have problems with these commands, please check the [detailed instruction
 
 ## Screenshots
 ### Frontend
-![](https://raw.githubusercontent.com/doormall-hk/shipping/0.2.2/etc/doc/frontend.png)
+![](https://raw.githubusercontent.com/doormall-hk/shipping/0.2.9/etc/doc/frontend.png)
 
 ### Backend
 ![](https://raw.githubusercontent.com/doormall-hk/shipping/0.2.2/etc/doc/backend.png)
