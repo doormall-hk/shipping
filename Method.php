@@ -25,12 +25,7 @@ final class Method extends \Df\Shipping\Method {
 		foreach ($this->s()->partners() as $p) { /** @var Partner $p */
 			$m = df_new_omd(ResM::class, [
 				'carrier' => $this->getCarrierCode()
-				/**
-				 * 2018-04-21
-				 * We intentionally set the method's title here, not the carries title:
-				 * @used-by https://github.com/doormall-hk/shipping/blob/0.1.2/view/frontend/web/template/methods/item.html#L21-L24
-				 */
-				,'carrier_title' => 'Pickup'//$p->title()
+				,'carrier_title' => 'Pickup'
 				,'cost' => $p->fee()
 				,'method' => $p->id()
 				,'method_title' => $p->title()
