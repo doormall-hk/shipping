@@ -29,8 +29,11 @@ return parent.extend({
 		// The `originalEvent` property is present when the event is triggered by the customer.
 		// https://stackoverflow.com/a/20397649
 		if (e.originalEvent) {
-			//console.log($(e.currentTarget).val());
-			this.regionsB(this.config['locations'][$(e.currentTarget).val()]);
+			var l = $(e.currentTarget).val();
+			this.regionsB(!l.length ? [] : this.config['locations'][l]);
+			if (!l.length) {
+				this.addresses([]);
+			}
 		}
 	},
 	/**
@@ -43,8 +46,9 @@ return parent.extend({
 		// The `originalEvent` property is present when the event is triggered by the customer.
 		// https://stackoverflow.com/a/20397649
 		if (e.originalEvent) {
-			$.when(api(this, 'doormall-shipping', {
-				pid: this.m.method_code, l1: this.regionA(), l2: $(e.currentTarget).val()
+			var l = $(e.currentTarget).val();
+			!l.length ? this.addresses([]) : $.when(api(this, 'doormall-shipping', {
+				pid: this.m.method_code, l1: this.regionA(), l2: l
 			}, 'get'))
 				.done($.proxy(function(v) {this.addresses(v);}, this))
 				.fail(function() {debugger;})
@@ -67,13 +71,13 @@ return parent.extend({
 	initialize: function() {
 		this._super();
 		this.config = window.checkoutConfig.shipping[this.m.carrier_code][this.m.method_code];
+		this.addresses = ko.observable({});
+		this.addressesO = ko.computed(function() {return this.opts(this.addresses());}, this);
 		this.regionA = ko.observable({});
 		this.regionB = ko.observable({});
 		this.regionsAO = this.opts(['Kowloon', 'Hong Kong Island', 'N.T', 'Macau']);
 		this.regionsB = ko.observable({});
 		this.regionsBO = ko.computed(function() {return this.opts(this.regionsB());}, this);
-		this.addresses = ko.observable({});
-		this.addressesO = ko.computed(function() {return this.opts(this.addresses());}, this);
 		this.dfIsChosen = ko.computed(function() {
 			var m = quote.shippingMethod();
 			return m && m.carrier_code === this.m.carrier_code && m.method_code === this.m.method_code;
