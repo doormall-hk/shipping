@@ -16,7 +16,7 @@ return parent.extend({
 		// The `originalEvent` property is present when the event is triggered by the customer.
 		// https://stackoverflow.com/a/20397649
 		if (e.originalEvent) {
-			console.log($(e.currentTarget).val());
+			this.address = $(e.currentTarget).val();
 		}
 	},
 	/**
