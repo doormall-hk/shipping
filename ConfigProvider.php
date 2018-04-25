@@ -12,6 +12,6 @@ final class ConfigProvider extends \Df\Shipping\ConfigProvider {
 	 * @return array(string => mixed)
 	 */
 	protected function config() {return df_map_r(function(Partner $p) {return [$p->id(), [
-		'img' => $p->img(), 'locations' => dfa_deep_slice($p->locations(), 2)
+		'img' => $p->img()
 	]];}, $this->s()->partners());}
 }

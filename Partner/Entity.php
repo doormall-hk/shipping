@@ -30,7 +30,6 @@ final class Entity extends \Df\Config\ArrayItem {
 
 	/**
 	 * 2018-04-23
-	 * @used-by \Doormall\Shipping\ConfigProvider::config()
 	 * @used-by \Doormall\Shipping\Controller\Index\Index::execute()
 	 * @param string|null $k [optional]
 	 * @return array(string => array(string => string[]))

@@ -30,9 +30,17 @@ return parent.extend({
 		// https://stackoverflow.com/a/20397649
 		if (e.originalEvent) {
 			var l = $(e.currentTarget).val();
-			this.regionsB(!l.length ? [] : this.config['locations'][l]);
-			if (!l.length) {
-				this.addresses([]);
+			if (!l.length) {this.regionsB([]); this.addresses([]);}
+			else {
+				var v = this.cache[l];
+				var update = $.proxy(function(v) {
+					this.cache[l] = v;
+					this.regionsB(_.keys(v));
+					this.addresses(this.reduce(v));
+				}, this);
+				v ? update(v) : $.when(api(this, 'doormall-shipping', {
+					pid: this.m.method_code, l: l
+				}, 'get')).done(update);
 			}
 		}
 	},
@@ -47,12 +55,8 @@ return parent.extend({
 		// https://stackoverflow.com/a/20397649
 		if (e.originalEvent) {
 			var l = $(e.currentTarget).val();
-			!l.length ? this.addresses([]) : $.when(api(this, 'doormall-shipping', {
-				pid: this.m.method_code, l1: this.regionA(), l2: l
-			}, 'get'))
-				.done($.proxy(function(v) {this.addresses(v);}, this))
-				.fail(function() {debugger;})
-			;
+			var v = this.cache[this.regionA()];
+			this.addresses(!l.length ? this.reduce(v) : v[l]);
 		}
 	},
 	/**
@@ -70,6 +74,7 @@ return parent.extend({
 	*/
 	initialize: function() {
 		this._super();
+		this.cache = {};
 		this.config = window.checkoutConfig.shipping[this.m.carrier_code][this.m.method_code];
 		this.addresses = ko.observable({});
 		this.addressesO = ko.computed(function() {return this.opts(this.addresses());}, this);
@@ -96,9 +101,12 @@ return parent.extend({
 		var isArray = _.isArray(map);
 		return [o('', '')].concat(_.map(map, function(v, k) {return isArray ? o(v, v) : o(k, v);}));
 	},
-	/**
-	 * 2018-04-19
-	 * @returns {String}
+ 	/**
+	 * 2018-04-25
+	 * @used-by changedRegionA()
+	 * @used-by changedRegionB()
+	 * @param {Object} v
+	 * @returns {Object}
 	 */
-	title: function() {return 'Hello, DoorMall!';}
+	reduce: function(v) {return _.reduce(v, function(r, i) {return _.assign(r, i);});},
 });});
