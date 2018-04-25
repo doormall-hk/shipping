@@ -46,11 +46,8 @@ return parent.extend({
 			$.when(api(this, 'doormall-shipping', {
 				pid: this.m.method_code, l1: this.regionA(), l2: $(e.currentTarget).val()
 			}, 'get'))
+				.done($.proxy(function(v) {this.addresses(v);}, this))
 				.fail(function() {debugger;})
-				.done($.proxy(function(json) {
-					debugger;
-					this.addresses(json);
-				}, this))
 			;
 		}
 	},
