@@ -14,7 +14,7 @@
 					,'id': ['s_method', method.carrier_code, method.method_code].join('_')
 				}
 				,checked: $parent.isSelected
-				,click: $parent.selectShippingMethod
+				,click: $parent.selectShippingMethod.bind($parent)
 				,value: [method.carrier_code, method.method_code].join('_')
 			"/>
 		<!-- /ko -->
