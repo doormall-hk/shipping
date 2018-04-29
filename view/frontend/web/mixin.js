@@ -1,7 +1,7 @@
 // 2018-04-22 «What are requirejs-config.js `mixins`?» https://mage2.pro/t/5297
 define([
-	'df-lodash', 'uiLayout', 'uiRegistry'
-], function(_, layout, uiRegistry) {'use strict'; return function(sb) {return sb.extend({
+	'df-lodash', 'jquery', 'Magento_Checkout/js/model/quote', 'uiLayout', 'uiRegistry'
+], function(_, $, q, layout, uiRegistry) {'use strict'; return function(sb) {return sb.extend({
    /**
 	* 2018-04-23
 	* @used-by Doormall_Shipping/methods/item
@@ -47,16 +47,43 @@ define([
 	 * @see Aheadworks_OneStepCheckout/js/view/shipping-method
 	 * @used-by Doormall_Shipping/methods/item.html
 	 */
-	selectShippingMethod: function(rate) {
+	selectShippingMethod: function(v) {
 		this._super();
-		uiRegistry.get([this.name, this._name(rate)].join('.'), function(m) {
+		var m = this._m(v);
+		if (m) {
 			debugger;
-		});
+		}
 	},
     /**
+	 * 2018-04-29
+	 * @override
+	 * @see Aheadworks_OneStepCheckout/js/view/shipping-method
+	 * @used-by Aheadworks_OneStepCheckout/js/view/place-order/aggregate-validator::_validateShippingMethod()
+	 */
+	validate: function() {
+		this._super();
+		var m = this._m(q.shippingMethod());
+		if (m) {
+			var $f = $('.shipping-method-card.' + this._name(m.m)).closest('form');
+			if (!$f.validation() || !$f.validation('isValid')) {
+				this.errorValidationMessage('Please specify a shipping method.');
+				this.source.set('params.invalid', true);
+			}
+		}
+	},
+	/**
+	 * 2018-04-29
+	 * @param {Object} r
+	 * @returns {?Object}
+	 */
+	_m: function(r) {return ('doormall' !== r.carrier_code ? null :
+		uiRegistry.get([this.name, this._name(r)].join('.'))
+	);},
+    /**
 	 * 2018-04-28
+	 * @used-by _m()
 	 * @used-by initialize()
-	 * @used-by selectShippingMethod()
+	 * @used-by validate()
 	 * @param {Object} m
 	 * @returns {String}
 	 */

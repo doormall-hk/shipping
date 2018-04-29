@@ -1,4 +1,8 @@
-<div data-bind="attr: {'class': ['shipping-method-card field choice', method.carrier_code].join(' ')}">
+<div data-bind="attr: {'class': [
+	'shipping-method-card field choice'
+	,method.carrier_code
+	,[method.carrier_code, method.method_code].join('_')
+].join(' ')}">
 	<div class='shipping-method-title'>
 		<!-- ko if: method.error_message -->
 			<div class='clearfix'></div>

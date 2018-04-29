@@ -5,7 +5,7 @@ define([
 ], function(_, api, $, ko, quote, parent) {'use strict';
 /** 2017-09-06 @uses Class::extend() https://github.com/magento/magento2/blob/2.2.0-rc2.3/app/code/Magento/Ui/view/base/web/js/lib/core/class.js#L106-L140 */
 return parent.extend({
-	defaults: {address: null, m: null, template: 'Doormall_Shipping/main'},
+	defaults: {m: null, template: 'Doormall_Shipping/main'},
 	/**
 	 * 2018-04-19
 	 * @param {Object} _this
@@ -16,7 +16,8 @@ return parent.extend({
 		// The `originalEvent` property is present when the event is triggered by the customer.
 		// https://stackoverflow.com/a/20397649
 		if (e.originalEvent) {
-			this.address = $(e.currentTarget).val();
+			var l = $(e.currentTarget).val();
+			debugger;
 		}
 	},
 	/**
@@ -76,6 +77,10 @@ return parent.extend({
 		this._super();
 		this.cache = {};
 		this.config = window.checkoutConfig.shipping[this.m.carrier_code][this.m.method_code];
+		this.address = ko.observable({});
+		this.address.subscribe(function(v) {
+			//debugger;
+		}, this);
 		this.addresses = ko.observable({});
 		this.addressesO = ko.computed(function() {return this.opts(this.addresses());}, this);
 		this.regionA = ko.observable({});

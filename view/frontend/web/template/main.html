@@ -8,7 +8,7 @@
 						<span><!-- ko df_i18n: 'Region A'--><!-- /ko --></span>
 					</label>
 					<select class='select' data-bind="
-						attr: {id: fid('regionA')}
+						attr: {'data-validate': JSON.stringify({required: true}), id: fid('regionA')}
 						,enable: true
 						,event:{change: changedRegionA}
 						,options: regionsAO
@@ -24,7 +24,7 @@
 						<span><!-- ko df_i18n: 'Region B'--><!-- /ko --></span>
 					</label>
 					<select class='select' data-bind="
-						attr: {id: fid('regionB')}
+						attr: {'data-validate': JSON.stringify({required: true}), id: fid('regionB')}
 						,enable: true
 						,event:{change: changedRegionB}
 						,options: regionsBO
@@ -42,7 +42,7 @@
 						<span><!-- ko df_i18n: 'Full Address'--><!-- /ko --></span>
 					</label>
 					<select class='select' data-bind="
-						attr: {id: fid('address')}
+						attr: {'data-validate': JSON.stringify({required: true}), id: fid('address')}
 						,enable: true
 						,event:{change: changedAddress}
 						,options: addressesO
