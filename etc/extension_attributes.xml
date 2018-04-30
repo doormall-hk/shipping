@@ -3,6 +3,7 @@
     xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
     xsi:noNamespaceSchemaLocation='urn:magento:framework:Api/etc/extension_attributes.xsd'
 >
+<!-- 2018-04-30 https://magento.stackexchange.com/questions/169304 -->
 	<extension_attributes for='Magento\Checkout\Api\Data\ShippingInformationInterface'>
 		<attribute code='doormall_location' type='string'/>
 	</extension_attributes>
