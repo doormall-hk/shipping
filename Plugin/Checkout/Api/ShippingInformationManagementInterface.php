@@ -20,6 +20,8 @@ final class ShippingInformationManagementInterface {
 	 */
 	function beforeSaveAddressInformation(Sb $sb, $qid, ISI $si) {
 		$q = df_quote_r()->getActive($qid); /** @var IQ|Q $q */
-		$q['doormall_location'] = $si->getExtensionAttributes()->getDoormallLocation();
+		// 2018-04-30 "How is a quote's `ext_shipping_info` property implemented and used?"
+		// https://mage2.pro/t/5507
+		$q->setExtShippingInfo($si->getExtensionAttributes()->getDoormallLocation());
 	}
 }
