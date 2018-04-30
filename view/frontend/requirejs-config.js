@@ -12,5 +12,6 @@ var config = {
     },
 	map: {'*': {
 		'Aheadworks_OneStepCheckout/template/shipping-method.html': 'Doormall_Shipping/template/methods.html'
+		,'Aheadworks_OneStepCheckout/js/action/set-shipping-information': 'Doormall_Shipping/save'
 	}}
 };

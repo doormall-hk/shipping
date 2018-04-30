@@ -47,12 +47,22 @@ define([
 	 * @see Aheadworks_OneStepCheckout/js/view/shipping-method
 	 * @used-by Doormall_Shipping/methods/item.html
 	 */
-	selectShippingMethod: function(v) {
-		this._super();
+	selectShippingMethod: function(v, l) {
 		var m = this._m(v);
+		var hasLocation = false;
 		if (m) {
-			debugger;
+			// 2018-04-30
+			// If selectShippingMethod() is called automatically, then l is an {Event}, not a string.
+			l = _.isString(l) && l.length ? l : m.address();
+			if (l.length) {
+				v.doormall_location = l;
+				hasLocation = true;
+			}
 		}
+		if (!hasLocation) {
+			delete v.doormall_location;
+		}
+		this._super(v);
 	},
     /**
 	 * 2018-04-29
