@@ -42,28 +42,15 @@ define([
 		return this;
 	},
 	/**
-	 * 2018-04-25
-	 * @override
-	 * @see Aheadworks_OneStepCheckout/js/view/shipping-method
-	 * @used-by Doormall_Shipping/methods/item.html
+	 * 2018-04-29
+	 * @used-by validate()
+	 * @used-by Doormall_Shipping/save
+	 * @param {Object} r
+	 * @returns {?Object}
 	 */
-	selectShippingMethod: function(v, l) {
-		var m = this._m(v);
-		var hasLocation = false;
-		if (m) {
-			// 2018-04-30
-			// If selectShippingMethod() is called automatically, then l is an {Event}, not a string.
-			l = _.isString(l) && l.length ? l : m.address();
-			if (l.length) {
-				v.doormall_location = l;
-				hasLocation = true;
-			}
-		}
-		if (!hasLocation) {
-			delete v.doormall_location;
-		}
-		this._super(v);
-	},
+	m: function(r) {return ('doormall' !== r.carrier_code ? null : uiRegistry.get(
+		[this.name, this._name(r)].join('.')
+	));},
     /**
 	 * 2018-04-29
 	 * @override
@@ -72,7 +59,7 @@ define([
 	 */
 	validate: function() {
 		this._super();
-		var m = this._m(q.shippingMethod());
+		var m = this.m(q.shippingMethod());
 		if (m) {
 			var $f = $('.shipping-method-card.' + this._name(m.m)).closest('form');
 			if (!$f.validation() || !$f.validation('isValid')) {
@@ -81,17 +68,9 @@ define([
 			}
 		}
 	},
-	/**
-	 * 2018-04-29
-	 * @param {Object} r
-	 * @returns {?Object}
-	 */
-	_m: function(r) {return ('doormall' !== r.carrier_code ? null :
-		uiRegistry.get([this.name, this._name(r)].join('.'))
-	);},
     /**
 	 * 2018-04-28
-	 * @used-by _m()
+	 * @used-by m()
 	 * @used-by initialize()
 	 * @used-by validate()
 	 * @param {Object} m

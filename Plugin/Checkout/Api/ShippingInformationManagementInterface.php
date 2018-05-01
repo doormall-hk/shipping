@@ -3,6 +3,8 @@ namespace Doormall\Shipping\Plugin\Checkout\Api;
 use Magento\Checkout\Api\Data\ShippingInformationInterface as ISI;
 use Magento\Checkout\Api\ShippingInformationManagementInterface as Sb;
 use Magento\Checkout\Model\ShippingInformation as SI;
+use Magento\Checkout\Api\Data\ShippingInformationExtension as SIE;
+use Magento\Checkout\Api\Data\ShippingInformationExtensionInterface as ISIE;
 // 2018-04-30
 final class ShippingInformationManagementInterface {
 	/**
@@ -19,6 +21,8 @@ final class ShippingInformationManagementInterface {
 	 * @param ISI|SI $si
 	 */
 	function beforeSaveAddressInformation(Sb $sb, $qid, ISI $si) {
-		df_quote_r()->getActive($qid)->setExtShippingInfo($si->getExtensionAttributes()->getDoormallLocation());
+		if ($a = $si->getExtensionAttributes()) { /** @var ISIE|SIE $a */
+			df_quote_r()->getActive($qid)->setExtShippingInfo($a->getDoormallLocation());
+		}
 	}
 }

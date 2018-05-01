@@ -11,22 +11,6 @@ return parent.extend({
 	 * @param {Object} _this
 	 * @param {Event} e
 	 */
-	changedAddress: function(_this, e) {
-		// 2018-04-19
-		// The `originalEvent` property is present when the event is triggered by the customer.
-		// https://stackoverflow.com/a/20397649
-		if (e.originalEvent) {
-			var l = $(e.currentTarget).val();
-			debugger;
-			var parent = uiRegistry.get(this.parentName);
-			parent.selectShippingMethod(this.m, l);
-		}
-	},
-	/**
-	 * 2018-04-19
-	 * @param {Object} _this
-	 * @param {Event} e
-	 */
 	changedRegionA: function(_this, e) {
 		// 2018-04-19
 		// The `originalEvent` property is present when the event is triggered by the customer.
@@ -36,8 +20,7 @@ return parent.extend({
 			this.address('');
 			var l = $(e.currentTarget).val();
 			if (!l.length) {
-				this.regionsB([]);
-				this.addresses([]);
+				this.regionsB([]); this.addresses([]);
 			}
 			else {
 				var v = this.cache[l];
@@ -86,9 +69,6 @@ return parent.extend({
 		this.cache = {};
 		this.config = window.checkoutConfig.shipping[this.m.carrier_code][this.m.method_code];
 		this.address = ko.observable('');
-		this.address.subscribe(function(v) {
-			//debugger;
-		}, this);
 		this.addresses = ko.observable({});
 		this.addressesO = ko.computed(function() {return this.opts(this.addresses());}, this);
 		this.regionA = ko.observable('');
