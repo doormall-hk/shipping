@@ -9,6 +9,7 @@ final class Settings extends \Df\Shipping\Settings {
 	 * 2018-04-21 «doorMALL» → «Shipping» → «Pickup»→ «Partners»
 	 * @used-by \Doormall\Shipping\ConfigProvider::config()
 	 * @used-by \Doormall\Shipping\Controller\Index\Index::execute()
+	 * @used-by \Doormall\Shipping\Plugin\Sales\Model\Order::afterGetShippingDescription()
 	 * @param int|null $id [optional]
 	 * @return A|Partner|null
 	 */

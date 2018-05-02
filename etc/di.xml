@@ -9,4 +9,10 @@
 			type='Doormall\Shipping\Plugin\Checkout\Api\ShippingInformationManagementInterface'
 		/>
 	</type>
+	<type name='Magento\Sales\Model\Order'>
+		<plugin
+			name='Doormall\Shipping\Plugin\Sales\Model\Order'
+			type='Doormall\Shipping\Plugin\Sales\Model\Order'
+		/>
+	</type>
 </config>
