@@ -73,7 +73,13 @@ return parent.extend({
 		this.addressesO = ko.computed(function() {return this.opts(this.addresses());}, this);
 		this.regionA = ko.observable('');
 		this.regionB = ko.observable('');
-		this.regionsAO = this.opts(['Kowloon', 'Hong Kong Island', 'N.T', 'Macau']);
+		// 2018-05-08
+		// "The Chinese interface fails on frontend:
+		// «Undefined index: Kowloon in vendor/doormall.hk/shipping/Controller/Index/Index.php on line 20»"
+		// https://github.com/doormall-hk/shipping/issues/1
+		this.regionsAO = this.opts('zh' === $('html').attr('lang') ?
+			['九龍', '香港島', '新界', '澳門'] : ['Kowloon', 'Hong Kong Island', 'N.T', 'Macau']
+		);
 		this.regionsB = ko.observable({});
 		this.regionsBO = ko.computed(function() {return this.opts(this.regionsB());}, this);
 		this.dfIsChosen = ko.computed(function() {
