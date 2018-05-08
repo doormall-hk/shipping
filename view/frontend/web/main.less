@@ -12,7 +12,14 @@
 	}
 	> fieldset {
 		border: 0; margin: 0 2em 0 0; padding: 0; width: 100%;
-		.field {margin-left: 0; margin-right: 0;}
+		.field {
+			margin-left: 0; margin-right: 0;
+			// 2018-05-08
+			// «When browser window width is small (trigger mobile view),
+			// the components are not placed properly on screen»:
+			// https://github.com/doormall-hk/shipping/issues/2
+			flex-basis: auto !important;
+		}
 	}
 }
 
