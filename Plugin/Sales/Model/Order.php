@@ -18,9 +18,17 @@ final class Order {
 		if ('doormall' === $c) {
 			$s = dfss($this); /** @var S $s */
 			$p = $s->partners($pid); /** @var Partner $p */
-			$l = dfa(df_oi_get(null, $sb), 'doormall_location'); /** @var string $l */
-			$ls = $p->locationM($l); /** @var string $ls */
-			$r = sprintf('%s - %s (%s)', $r, $l, $ls);
+			/**
+			 * 2018-05-11
+			 * «When we pay for the order, the pick store code and address is not picked up at the backend»
+			 * https://github.com/doormall-hk/shipping/issues/5
+			 * $l is `null` if the order is not yet placed:
+			 * @used-by \Magento\Quote\Model\QuoteManagement::submitQuote() 
+			 */
+			if ($l = dfa(df_oi_get(null, $sb), 'doormall_location')) {  /** @var string $l */
+				$ls = $p->locationM($l); /** @var string $ls */
+				$r = sprintf('%s - %s (%s)', $r, $l, $ls);
+			};
 		}
 		return $r;
 	}
