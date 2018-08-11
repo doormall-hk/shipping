@@ -13,5 +13,6 @@ var config = {
 	map: {'*': {
 		'Aheadworks_OneStepCheckout/template/shipping-method.html': 'Doormall_Shipping/template/aw/methods.html'
 		,'Aheadworks_OneStepCheckout/js/action/set-shipping-information': 'Doormall_Shipping/aw/save'
+		,'Mageplaza_Osc/template/container/shipping.html': 'Doormall_Shipping/template/mp/methods.html'
 	}}
 };
