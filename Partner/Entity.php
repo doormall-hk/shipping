@@ -55,16 +55,19 @@ final class Entity extends \Df\Config\ArrayItem {
 
 	/**
 	 * 2018-05-03
+	 * 2018-08-12 Since now, it returns `null` on a error: https://github.com/doormall-hk/shipping/issues/7
 	 * @used-by \Doormall\Shipping\Plugin\Sales\Model\Order::afterGetShippingDescription()
 	 * @param string $k 
-	 * @return array(string => string)
+	 * @return string|null
 	 */
-	function locationM($k) {return dfa_deep(df_cache_get_simple(null, function($url) {return
-		!$url ? [] : df_map_r(
-			function(array $i) {return [$i[0], ['en' => $i[3], 'zh' => $i[7]]];}
-			,df_tail(array_map('str_getcsv', df_explode_n(file_get_contents($url))))
-		)
-	;}, [], $this[self::data_url]), df_cc_path($k, df_lang_zh_en()));}
+	function locationM($k) {return df_try(function() use($k) {return
+		dfa_deep(df_cache_get_simple(null, function($url) {return
+			!$url ? [] : df_map_r(
+				function(array $i) {return [$i[0], ['en' => $i[3], 'zh' => $i[7]]];}
+				,df_tail(array_map('str_getcsv', df_explode_n(file_get_contents($url))))
+			)
+		;}, [], $this[self::data_url]), df_cc_path($k, df_lang_zh_en()))
+	;});}
 
 	/**
 	 * 2018-04-19

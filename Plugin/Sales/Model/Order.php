@@ -26,8 +26,12 @@ final class Order {
 			 * @used-by \Magento\Quote\Model\QuoteManagement::submitQuote() 
 			 */
 			if ($l = dfa(df_oi_get(null, $sb), 'doormall_location')) {  /** @var string $l */
-				$ls = $p->locationM($l); /** @var string $ls */
-				$r = sprintf('%s - %s (%s)', $r, $l, $ls);
+				/**
+				 * 2018-08-12
+				 * "«Notice: Undefined offset: in vendor/doormall.hk/shipping/Partner/Entity.php on line 64»
+				 * if the CSV file has been deleted": https://github.com/doormall-hk/shipping/issues/7
+				 */
+				$r = "$r - $l" . (!($ls = $p->locationM($l)) ? '' : " ($ls)"); /** @var string $ls */
 			};
 		}
 		return $r;
