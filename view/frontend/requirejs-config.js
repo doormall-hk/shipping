@@ -8,10 +8,10 @@
 var config = {
     config: {
     	// 2018-04-22 «What are requirejs-config.js `mixins`?» https://mage2.pro/t/5297
-        mixins: {'Aheadworks_OneStepCheckout/js/view/shipping-method': {'Doormall_Shipping/mixin': true}}
+        mixins: {'Aheadworks_OneStepCheckout/js/view/shipping-method': {'Doormall_Shipping/aw/mixin': true}}
     },
 	map: {'*': {
-		'Aheadworks_OneStepCheckout/template/shipping-method.html': 'Doormall_Shipping/template/methods.html'
-		,'Aheadworks_OneStepCheckout/js/action/set-shipping-information': 'Doormall_Shipping/save'
+		'Aheadworks_OneStepCheckout/template/shipping-method.html': 'Doormall_Shipping/template/aw/methods.html'
+		,'Aheadworks_OneStepCheckout/js/action/set-shipping-information': 'Doormall_Shipping/aw/save'
 	}}
 };

@@ -31,7 +31,7 @@ define([
 			_.each(a, function(m) {
 				if ('doormall' === m.carrier_code) {
 					layout([{
-						component: 'Doormall_Shipping/main'
+						component: 'Doormall_Shipping/aw/main'
 						,config: {m: m}
 						,displayArea: 'doormall'
 						,name: this._name(m)
