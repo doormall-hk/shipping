@@ -6,11 +6,12 @@
 // https://stackoverflow.com/a/37464758
 // https://magento.stackexchange.com/a/117236
 var config = {
-    config: {
-    	// 2018-04-22 «What are requirejs-config.js `mixins`?» https://mage2.pro/t/5297
-        mixins: {'Aheadworks_OneStepCheckout/js/view/shipping-method': {'Doormall_Shipping/aw/mixin': true}}
-    },
-	map: {'*': {
+	// 2018-04-22 «What are requirejs-config.js `mixins`?» https://mage2.pro/t/5297
+    config: {mixins: {
+		'Aheadworks_OneStepCheckout/js/view/shipping-method': {'Doormall_Shipping/aw/mixin': true}
+		,'Mageplaza_Osc/js/view/shipping': {'Doormall_Shipping/mp/mixin': true}
+	}}
+	,map: {'*': {
 		'Aheadworks_OneStepCheckout/template/shipping-method.html': 'Doormall_Shipping/template/aw/methods.html'
 		,'Aheadworks_OneStepCheckout/js/action/set-shipping-information': 'Doormall_Shipping/aw/save'
 		,'Mageplaza_Osc/template/container/shipping.html': 'Doormall_Shipping/template/mp/methods.html'
