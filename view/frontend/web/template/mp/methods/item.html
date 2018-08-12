@@ -22,14 +22,14 @@
 				class='radio'
 				data-bind="
 					attr: {
-						'id': 's_method_' + method.carrier_code + '_' + method.method_code
-						,'aria-labelledby': 
-							'label_method_' + method.method_code + '_' + method.carrier_code 
-							+ ' ' 
-							+ 'label_carrier_' + method.method_code + '_' + method.carrier_code
+						'id': ['s_method', method.carrier_code, method.method_code].join('_')
+						,'aria-labelledby': [
+							['label_method', method.method_code, method.carrier_code].join('_')
+							,['label_carrier', method.method_code, method.carrier_code].join('_')
+						].join(' ')
 					}
 					,checked: $parent.isSelected
-					value: method.carrier_code + '_' + method.method_code
+					value: [method.carrier_code, method.method_code].join('_')
 				"
 				type='radio'
 			/>
