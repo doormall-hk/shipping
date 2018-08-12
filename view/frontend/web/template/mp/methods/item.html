@@ -54,7 +54,7 @@
 		,text: method.method_title
 	"/>
 	<td class='col col-carrier' data-bind="
-		attr: {'id': 'label_carrier_' + method.method_code + '_' + method.carrier_code}
+		attr: {id: ['label_carrier', method.method_code, method.carrier_code].join('_')}
 		,text: method.carrier_title
 	"/>
 </tr>
