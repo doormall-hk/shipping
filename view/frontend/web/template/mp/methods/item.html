@@ -51,8 +51,13 @@
 	</td>
 	<td class='col col-method' data-bind="
 		attr: {id: ['label_method', method.method_code, method.carrier_code].join('_')}
-		,text: method.method_title
-	"/>
+		,css: $parent.dfLabelClass(method)
+	">
+		<!-- ko if: $parent.dfImg(method) -->
+			<span><img data-bind="attr: $parent.dfImg(method)"/></span>
+		<!-- /ko -->
+		<!-- ko text: method.method_title --><!-- /ko -->
+	</td>
 	<td class='col col-carrier' data-bind="
 		attr: {id: ['label_carrier', method.method_code, method.carrier_code].join('_')}
 		,text: method.carrier_title
