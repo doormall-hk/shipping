@@ -7,11 +7,11 @@
 					data-bind="attr: {
 						'aria-labelledby': [
 							['label_method', method.method_code, method.carrier_code].join('_')
-							,['label_carrier', method.method_code, method.carrier_code].join('_')			
+							,['label_carrier', method.method_code, method.carrier_code].join('_')
 						].join(' ')
 						,checked: 1 === $parent.rates().length
 						,id: ['s_method', method.method_code].join('_')
-						,value : [method.carrier_code, method.method_code].join('_')						
+						,value : [method.carrier_code, method.method_code].join('_')
 					}"
 					type='radio'
 				/>
@@ -22,11 +22,11 @@
 					class='radio'
 					data-bind="
 						attr: {
-							'id': ['s_method', method.carrier_code, method.method_code].join('_')
-							,'aria-labelledby': [
+							'aria-labelledby': [
 								['label_method', method.method_code, method.carrier_code].join('_')
 								,['label_carrier', method.method_code, method.carrier_code].join('_')
 							].join(' ')
+							,id: ['s_method', method.carrier_code, method.method_code].join('_')
 						}
 						,checked: $parent.isSelected
 						value: [method.carrier_code, method.method_code].join('_')
@@ -42,8 +42,8 @@
 			<!-- ko template: getTemplate() --><!-- /ko -->
 		<!-- /ko -->
 		<!-- TIG PostNL modification start -->
-			<!-- ko if: 
-				$parent.isEnableModulePostNL && $parent.isPostNLDeliveryMethod(method) && $parent.PostNLFee() 
+			<!-- ko if:
+				$parent.isEnableModulePostNL && $parent.isPostNLDeliveryMethod(method) && $parent.PostNLFee()
 			-->
 				+ <span data-bind='text: $parent.formatPrice($parent.PostNLFee())'></span>
 			<!-- /ko -->
