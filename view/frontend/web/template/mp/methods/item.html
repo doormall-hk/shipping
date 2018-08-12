@@ -1,28 +1,39 @@
-<tr class="row" data-bind="click: $parent.selectShippingMethod, style: {cursor: 'pointer'}">
-	<td class="col col-method">
+<tr class='row' data-bind="click: $parent.selectShippingMethod, style: {cursor: 'pointer'}">
+	<td class='col col-method'>
 		<!-- ko ifnot: method.error_message -->
 		<!-- ko if: $parent.rates().length == 1 -->
-		<input class="radio"
-			   type="radio"
-			   data-bind="attr: {
-							checked: $parent.rates().length == 1,
-							'value' : method.carrier_code + '_' + method.method_code,
-							'id': 's_method_' + method.method_code,
-							'aria-labelledby': 'label_method_' + method.method_code + '_' + method.carrier_code + ' ' + 'label_carrier_' + method.method_code + '_' + method.carrier_code
-						 }" />
-		<label></label>
+			<input
+				class='radio'
+				data-bind="attr: {
+					'aria-labelledby': [
+						['label_method', method.method_code, method.carrier_code].join('_')
+						,['label_carrier', method.method_code, method.carrier_code].join('_')			
+					].join(' ')
+					,checked: 1 === $parent.rates().length
+					,id: ['s_method', method.method_code].join('_')
+					,value : [method.carrier_code, method.method_code].join('_')						
+				}"
+				type='radio'
+			/>
+			<label/>
 		<!-- /ko -->
 		<!--ko ifnot: ($parent.rates().length == 1)-->
-		<input type="radio"
-			   data-bind="
-						value: method.carrier_code + '_' + method.method_code,
-						checked: $parent.isSelected,
-						attr: {
-							'id': 's_method_' + method.carrier_code + '_' + method.method_code,
-							'aria-labelledby': 'label_method_' + method.method_code + '_' + method.carrier_code + ' ' + 'label_carrier_' + method.method_code + '_' + method.carrier_code
-						}"
-			   class="radio"/>
-		<label></label>
+			<input
+				class='radio'
+				data-bind="
+					attr: {
+						'id': 's_method_' + method.carrier_code + '_' + method.method_code
+						,'aria-labelledby': 
+							'label_method_' + method.method_code + '_' + method.carrier_code 
+							+ ' ' 
+							+ 'label_carrier_' + method.method_code + '_' + method.carrier_code
+					}
+					,checked: $parent.isSelected
+					value: method.carrier_code + '_' + method.method_code
+				"
+				type='radio'
+			/>
+			<label/>
 		<!--/ko-->
 		<!-- /ko -->
 	</td>
