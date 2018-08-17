@@ -1,0 +1,56 @@
+<fieldset>
+	<div class='field-row osc-fluid' data-bind='text: method.method_title'></div>
+	<div data-bind="visible: dfIsChosen">
+		<div class='field-row osc-fluid'>
+			<div class='field _required fl-label' data-value-specified='1'>
+				<div class='control'>
+					<label data-bind="attr: {for: fid('regionA')}" class='label'>
+						<span><!-- ko df_i18n: 'Region A'--><!-- /ko --></span>
+					</label>
+					<select class='select' data-bind="
+						attr: {'data-validate': JSON.stringify({required: true}), id: fid('regionA')}
+						,enable: true
+						,event:{change: changedRegionA}
+						,options: regionsAO
+						,optionsValue: 'value'
+						,optionsText: 'label'
+						,value: regionA
+					"/>
+				</div>
+			</div>
+			<div class='field _required fl-label' data-value-specified='1'>
+				<div class='control'>
+					<label data-bind="attr: {for: fid('regionB')}" class='label'>
+						<span><!-- ko df_i18n: 'Region B'--><!-- /ko --></span>
+					</label>
+					<select class='select' data-bind="
+						attr: {'data-validate': JSON.stringify({required: true}), id: fid('regionB')}
+						,enable: true
+						,event:{change: changedRegionB}
+						,options: regionsBO
+						,optionsValue: 'value'
+						,optionsText: 'label'
+						,value: regionB
+					"/>
+				</div>
+			</div>
+		</div>
+		<div class='field-row osc-fluid'>
+			<div class='field _required fl-label' data-value-specified='1'>
+				<div class='control'>
+					<label data-bind="attr: {for: fid('address')}" class='label'>
+						<span><!-- ko df_i18n: 'Full Address'--><!-- /ko --></span>
+					</label>
+					<select class='select' data-bind="
+						attr: {'data-validate': JSON.stringify({required: true}), id: fid('address')}
+						,enable: true
+						,options: addressesO
+						,optionsValue: 'value'
+						,optionsText: 'label'
+						,value: address
+					"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</fieldset>

@@ -27,17 +27,15 @@ define([
 	 */
 	initialize: function() {
 		this._super();
-		this.rates.subscribe(function(a) {
-			_.each(a, function(m) {
-				if ('doormall' === m.carrier_code) {
-					layout([{
-						component: 'Doormall_Shipping/mp/main'
-						,config: {m: m}
-						,displayArea: 'doormall'
-						,name: this._name(m)
-					}], this);
-				}
-			}.bind(this));
+		_.each(window.checkoutConfig.shippingMethods, function(m) {
+			if ('doormall' === m.carrier_code) {
+				layout([{
+					component: 'Doormall_Shipping/mp/main'
+					,config: {m: m}
+					,displayArea: 'doormall'
+					,name: this._name(m)
+				}], this);
+			}
 		}.bind(this));
 		return this;
 	},
