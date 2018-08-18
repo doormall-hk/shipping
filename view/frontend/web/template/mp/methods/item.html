@@ -31,7 +31,6 @@
 	<!-- ko if: 'doormall' === method.carrier_code -->
 		<td class='col col-method' colspan='2' data-bind="
 			attr: {id: ['label_method', method.method_code, method.carrier_code].join('_')}
-			,css: $parent.dfLabelClass(method)
 		">
 			<!-- ko foreach: $parent.getRegion('doormall') -->
 				<!-- ko if: method.method_code === $data.m.method_code -->
@@ -43,7 +42,6 @@
 	<!-- ko ifnot: 'doormall' === method.carrier_code -->
 		<td class='col col-method' data-bind="
 			attr: {id: ['label_method', method.method_code, method.carrier_code].join('_')}
-			,css: $parent.dfLabelClass(method)
 		"><!-- ko text: method.method_title --><!-- /ko --></td>
 		<td class='col col-carrier' data-bind="
 			attr: {id: ['label_carrier', method.method_code, method.carrier_code].join('_')}
