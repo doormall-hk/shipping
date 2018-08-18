@@ -17,6 +17,9 @@
 			I have ported it from Mageplaza OneStepCheckout. -->
 			<label/>
 		<!-- /ko -->
+		<!-- ko if: $parent.dfImg(method) -->
+			<span><img data-bind="attr: $parent.dfImg(method)"/></span>
+		<!-- /ko -->
 	</td>
 	<td class='col col-price'>
 		<!-- ko foreach: $parent.getRegion('price') -->
@@ -35,9 +38,6 @@
 			attr: {id: ['label_method', method.method_code, method.carrier_code].join('_')}
 			,css: $parent.dfLabelClass(method)
 		">
-			<!-- ko if: $parent.dfImg(method) -->
-				<span><img data-bind="attr: $parent.dfImg(method)"/></span>
-			<!-- /ko -->
 			<!-- ko foreach: $parent.getRegion('doormall') -->
 				<!-- ko if: method.method_code === $data.m.method_code -->
 					<!-- ko template: getTemplate() --><!-- /ko -->
