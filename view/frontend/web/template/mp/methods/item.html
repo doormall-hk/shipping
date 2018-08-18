@@ -1,4 +1,6 @@
-<tr class='row' data-bind="click: $parent.selectShippingMethod, style: {cursor: 'pointer'}">
+<tr class='row' data-bind="
+	css: method.carrier_code, click: $parent.selectShippingMethod, style: {cursor: 'pointer'}
+">
 	<td class='col col-method'>
 		<!-- ko ifnot: method.error_message -->
 			<input class='radio' type='radio' data-bind="
@@ -23,7 +25,7 @@
 			<!-- ko template: getTemplate() --><!-- /ko -->
 		<!-- /ko -->
 		<!-- ko if: $parent.dfImg(method) -->
-			<span><img data-bind="attr: $parent.dfImg(method)"/></span>
+			<img data-bind="attr: $parent.dfImg(method)"/>
 		<!-- /ko -->
 	</td>
 	<!-- ko if: 'doormall' === method.carrier_code -->
