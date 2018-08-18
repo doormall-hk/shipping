@@ -1,64 +1,67 @@
 // 2018-08-18
-.onestepcheckout-index-index tr {
-	&:not(.doormall) {cursor: pointer;}
-	&.doormall {
-		// 2018-08-18 It matches the first 2 td's:
-		// https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child#Example_selectors
-		td:nth-child(-n+2) {cursor: pointer;}
-		.col-price img {display: block; margin-top: 0.25rem;} // 2018-08-18 Logo
-		fieldset {
-			border: 0;
-			.field {
-				display: flex;
-				// 2018-05-08
-				// «When browser window width is small (trigger mobile view),
-				// the components are not placed properly on screen»:
-				// https://github.com/doormall-hk/shipping/issues/2
-				flex-basis: auto !important;
-				flex-direction: column;
-				margin: 5px 0;
-				position: relative;
-				width: 100%;
-				.label {
-					align-items: center;
-					box-sizing: border-box;
-					color: #838383;
-					cursor: pointer;
+.onestepcheckout-index-index .checkout-shipping-method .step-content {
+	padding-top: 0 !important;
+	tr {
+		&:not(.doormall) {cursor: pointer;}
+		&.doormall {
+			// 2018-08-18 It matches the first 2 td's:
+			// https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child#Example_selectors
+			td:nth-child(-n+2) {cursor: pointer;}
+			.col-price img {display: block; margin-top: 0.25rem;} // 2018-08-18 Logo
+			fieldset {
+				border: 0;
+				.field {
 					display: flex;
-					flex-direction: row;
-					font-weight: 400;
-					height: 100%;
-					max-height: 44px;
-					padding: 0 0 0 10px;
-					pointer-events: none;
-					position: absolute;
-					transition: 0.3s;
-					width: calc(100% - 10px);
-					z-index: 1;
-				}
-				&.fl-label {
+					// 2018-05-08
+					// «When browser window width is small (trigger mobile view),
+					// the components are not placed properly on screen»:
+					// https://github.com/doormall-hk/shipping/issues/2
+					flex-basis: auto !important;
+					flex-direction: column;
+					margin: 5px 0;
+					position: relative;
+					width: 100%;
 					.label {
-						font-size: 85%;
-						overflow: hidden;
-						transform: translateY(-10px);
-						white-space: nowrap;
+						align-items: center;
+						box-sizing: border-box;
+						color: #838383;
+						cursor: pointer;
+						display: flex;
+						flex-direction: row;
+						font-weight: 400;
+						height: 100%;
+						max-height: 44px;
+						padding: 0 0 0 10px;
+						pointer-events: none;
+						position: absolute;
+						transition: 0.3s;
+						width: calc(100% - 10px);
+						z-index: 1;
+					}
+					&.fl-label {
+						.label {
+							font-size: 85%;
+							overflow: hidden;
+							transform: translateY(-10px);
+							white-space: nowrap;
+						}
+					}
+					select {
+						background-color: transparent;
+						background-position: calc(100% - 10px) 50% !important;
+						border-radius: 1px;
+						border: 1px solid #d8d8d8;
+						cursor: pointer;
+						margin: 0;
+						min-height: 44px;
+						outline: none;
+						padding: 15px 30px 0 9px;
 					}
 				}
-				select {
-					background-color: transparent;
-					background-position: calc(100% - 10px) 50% !important;
-					border-radius: 1px;
-					border: 1px solid #d8d8d8;
-					cursor: pointer;
-					margin: 0;
-					min-height: 44px;
-					outline: none;
-					padding: 15px 30px 0 9px;
+				.field-row {
+					display: flex;
+					justify-content: space-between;
 				}
-			}
-			.field-row {
-				display: flex;
-				justify-content: space-between;
 			}
 		}
 	}
