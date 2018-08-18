@@ -17,21 +17,14 @@
 			I have ported it from Mageplaza OneStepCheckout. -->
 			<label/>
 		<!-- /ko -->
-		<!-- ko if: $parent.dfImg(method) -->
-			<span><img data-bind="attr: $parent.dfImg(method)"/></span>
-		<!-- /ko -->
 	</td>
 	<td class='col col-price'>
 		<!-- ko foreach: $parent.getRegion('price') -->
 			<!-- ko template: getTemplate() --><!-- /ko -->
 		<!-- /ko -->
-		<!-- TIG PostNL modification start -->
-			<!-- ko if:
-				$parent.isEnableModulePostNL && $parent.isPostNLDeliveryMethod(method) && $parent.PostNLFee()
-			-->
-				+ <span data-bind='text: $parent.formatPrice($parent.PostNLFee())'></span>
-			<!-- /ko -->
-		<!-- TIG PostNL modification end -->
+		<!-- ko if: $parent.dfImg(method) -->
+			<span><img data-bind="attr: $parent.dfImg(method)"/></span>
+		<!-- /ko -->
 	</td>
 	<!-- ko if: 'doormall' === method.carrier_code -->
 		<td class='col col-method' colspan='2' data-bind="
@@ -71,14 +64,3 @@
 		</td>
 	</tr>
 <!-- /ko -->
-<!-- TIG PostNL modification start -->
-	<!-- ko if: $parent.isEnableModulePostNL && $parent.canUsePostnlDeliveryOptions(method) -->
-		<tr>
-			<td colspan='10' class='postnl-deliveryoptions'>
-				<!-- ko foreach: $parent.getRegion('postnl-deliveryoptions') -->
-					<!-- ko template: getTemplate() --><!-- /ko -->
-				<!-- /ko -->
-			</td>
-		</tr>
-	<!-- /ko -->
-<!-- TIG PostNL modification end -->
