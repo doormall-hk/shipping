@@ -1,5 +1,11 @@
 // 2018-08-18
-.onestepcheckout-index-index tr.doormall {
-	.col-price img {display: block; margin-top: 0.25rem;} // 2018-08-18 Logo
-	fieldset {border: 0;}
+.onestepcheckout-index-index tr {
+	&:not(.doormall) {cursor: pointer;}
+	&.doormall {
+		// 2018-08-18 It matches the first 2 td's:
+		// https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child#Example_selectors
+		td:nth-child(-n+2) {cursor: pointer;}
+		.col-price img {display: block; margin-top: 0.25rem;} // 2018-08-18 Logo
+		fieldset {border: 0;}
+	}
 }

@@ -1,6 +1,4 @@
-<tr class='row' data-bind="
-	css: method.carrier_code, click: $parent.selectShippingMethod, style: {cursor: 'pointer'}
-">
+<tr class='row' data-bind="css: method.carrier_code, click: $parent.selectShippingMethod">
 	<td class='col col-method'>
 		<!-- ko ifnot: method.error_message -->
 			<input class='radio' type='radio' data-bind="
