@@ -6,6 +6,24 @@
 		// https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child#Example_selectors
 		td:nth-child(-n+2) {cursor: pointer;}
 		.col-price img {display: block; margin-top: 0.25rem;} // 2018-08-18 Logo
-		fieldset {border: 0;}
+		fieldset {
+			border: 0;
+			.field {
+				display: flex;
+				// 2018-05-08
+				// «When browser window width is small (trigger mobile view),
+				// the components are not placed properly on screen»:
+				// https://github.com/doormall-hk/shipping/issues/2
+				flex-basis: auto !important;
+				flex-direction: column;
+				margin: 5px 0;
+				position: relative;
+				width: 100%;
+			}
+			.field-row {
+				display: flex;
+				justify-content: space-between;
+			}
+		}
 	}
 }
