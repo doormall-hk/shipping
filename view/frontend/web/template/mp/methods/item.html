@@ -1,38 +1,17 @@
 <tr class='row' data-bind="click: $parent.selectShippingMethod, style: {cursor: 'pointer'}">
 	<td class='col col-method'>
 		<!-- ko ifnot: method.error_message -->
-			<!-- ko if: $parent.rates().length == 1 -->
-				<input
-					class='radio'
-					data-bind="attr: {
-						'aria-labelledby': [
-							['label_method', method.method_code, method.carrier_code].join('_')
-							,['label_carrier', method.method_code, method.carrier_code].join('_')
-						].join(' ')
-						,checked: 1 === $parent.rates().length
-						,id: ['s_method', method.method_code].join('_')
-						,value : [method.carrier_code, method.method_code].join('_')
-					}"
-					type='radio'
-				/>
-			<!-- /ko -->
-			<!--ko ifnot: ($parent.rates().length == 1)-->
-				<input
-					class='radio'
-					data-bind="
-						attr: {
-							'aria-labelledby': [
-								['label_method', method.method_code, method.carrier_code].join('_')
-								,['label_carrier', method.method_code, method.carrier_code].join('_')
-							].join(' ')
-							,id: ['s_method', method.carrier_code, method.method_code].join('_')
-						}
-						,checked: $parent.isSelected
-						value: [method.carrier_code, method.method_code].join('_')
-					"
-					type='radio'
-				/>
-			<!--/ko-->
+			<input class='radio' type='radio' data-bind="
+				attr: {
+					'aria-labelledby': [
+						['label_method', method.method_code, method.carrier_code].join('_')
+						,['label_carrier', method.method_code, method.carrier_code].join('_')
+					].join(' ')
+					,id: ['s_method', method.carrier_code, method.method_code].join('_')
+				}
+				,checked: $parent.isSelected
+				,value: [method.carrier_code, method.method_code].join('_')
+			"/>
 			<!-- 2018-08-18
 			It is needed for the radio-button's decoration.
 			I have ported it from Mageplaza OneStepCheckout. -->
